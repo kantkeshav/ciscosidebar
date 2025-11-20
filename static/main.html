@@ -262,7 +262,7 @@
             </div>
           </div>
           <button id="open-subform" class="button is-primary mb-3">
-            Add Extra Details
+            Add Call Log
           </button>
         </div>
         <div class="mx-5 mt-6">
@@ -314,43 +314,6 @@
 
   <!-- SUBFORM POPUP MODAL -->
 
-  <!-- <div id="modal-subform" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card" style="width:40%;">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Extra Details</p>
-        <button id="modal-subform-close" class="delete"></button>
-      </header>
-
-      <section class="modal-card-body">
-        <div class="field">
-          <label class="label">Field 1</label>
-          <input id="sf-field1" class="input" type="text">
-        </div>
-
-        <div class="field">
-          <label class="label">Field 2</label>
-          <input id="sf-field2" class="input" type="text">
-        </div>
-
-        <div class="field">
-          <label class="label">Field 3</label>
-          <input id="sf-field3" class="input" type="number">
-        </div>
-
-        <div class="field">
-          <label class="label">Field 4</label>
-          <textarea id="sf-field4" class="textarea"></textarea>
-        </div>
-      </section>
-
-      <footer class="modal-card-foot">
-        <button id="modal-subform-save" class="button is-info">Save</button>
-        <button id="modal-subform-close-lower" class="button">Cancel</button>
-      </footer>
-    </div>
-  </div> -->
-
   <div id="modal-subform" class="modal">
     <div class="modal-background"></div>
 
@@ -382,6 +345,12 @@
               <div class="select is-fullwidth">
                 <select id="callType">
                   <option value="">Select...</option>
+                  <option value="Take Message">Take Message</option>
+                  <option value="Send to Voicemail">Send to Voicemail</option>
+                  <option value="Transfer">Transfer</option>
+                  <option value="Sales Call">Sales Call</option>
+                  <option value="Test Call">Test Call</option>
+                  <option value="No Further Action">No Further Action</option>
                 </select>
               </div>
             </div>
@@ -399,7 +368,9 @@
               <label class="label">Company Contact</label>
               <div class="select is-fullwidth">
                 <select id="companyContact">
-                  <option value="">Select...</option>
+                  <option value="">Select</option>
+                  <option value="Christopher Porter">Christopher Porter</option>
+                  <option value="Jacqui Hamson">Jacqui Hamson</option>
                 </select>
               </div>
             </div>
