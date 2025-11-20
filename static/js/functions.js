@@ -13,9 +13,29 @@ function closeAllModals() {
     };
 }
 
-// function addCallLogRow(call_log){
-
-// }
+function addCallLogRow(call_log){
+    let field1Input = $(`<input name="call-log-field1" class="input" type="text" placeholder="Field 1">`);
+    let field2Input = $(`<input name="call-log-field2" class="input" type="text" placeholder="Field 2">`);
+    if(call_log){
+        if(call_log.field1){
+            field1Input.val(call_log.field1);
+        }
+        if(call_log.field2){
+            field2Input.val(call_log.field2);
+        }
+    }
+    let row = $('<tr class="call-log-row">');
+    row.append(
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append($(`<button name="call-log-delete" class="button">`).append(
+            $(`<span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>`)
+        ).on('click', function(e){
+            $(e.currentTarget.parentNode.parentNode).remove();
+        })),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(field1Input),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(field2Input),
+    );
+    $('#call-log-settings').append(row)
+}
 
 
 function addActionRow(action){
@@ -87,13 +107,13 @@ function fillSettings(data){
             addActionRow(action);
         }
     }
-    // $('#call-log-settings').empty();
-    // if(data){
-    //     for(let call_log of data["call_logs"]){
-    //         customLog('fillSettings calllogs:', call_log);
-    //         addCallLogRow(call_log);
-    //     }
-    // }
+    $('#call-log-settings').empty();
+    if(data){
+        for(let call_log of data["call_logs"]){
+            customLog('fillSettings calllogs:', call_log);
+            addCallLogRow(call_log);
+        }
+    }
 }
 
 
