@@ -32,10 +32,13 @@
 </head>
 
 <body>
+  <!-- this is the first page you see difference in the settings button for admin or agent -->
   <div id="header-box" class="columns is-centered is-info mt-0">
     <div class="column is-1 is-centered py-2">
       <div class="dropdown is-left is-active">
         <div class="dropdown-trigger">
+          <!-- settings gear button -->
+          <!-- this is shown for admins else not- from config.js -->
           <button id="settings-button" class="button" aria-haspopup="true" aria-controls="theme-menu"
             style="display:none;">
             <span class="icon">
@@ -43,6 +46,7 @@
             </span>
           </button>
         </div>
+        <!-- settings dropdown menu -->
         <div class="dropdown-menu" id="settings-menu" role="menu" style="display:none;">
           <div id="settings-menu-content" class="dropdown-content">
           </div>
@@ -95,6 +99,7 @@
       </div>
     </div>
   </div>
+
   <div class="columns is-centered mb-0">
     <div class="column is-three-quarters">
       <article class="message is-info">
@@ -105,6 +110,7 @@
   <div id="script-div" class="notification mx-5">
     <h2 id="script" class="subtitle is-3"></h2>
   </div>
+  <!-- this section is shown when a call comes in ,and a queue exists,the data within this is built by buildCompany and buildContacts  -->
   <div id="main-content" style="display:none;">
     <div class="mx-5">
       <h2 class="subtitle is-4">Company Profile</h2>
@@ -119,6 +125,9 @@
         </div>
       </div>
     </div>
+    <button id="open-call-log-modal" class="button is-primary mb-3">
+        Add Call Log
+    </button>
     <div class="mx-5 mt-6">
       <h2 class="subtitle is-4 my-1">Company Contacts</h2>
       <div id="actions">
@@ -129,6 +138,7 @@
       </div>
     </div>
   </div>
+  <!-- this section is shown when a call comes in ,and a queue does not exist , only customer data exits built by buildCustomer -->
   <div class="columns is-centered mb-0">
     <div class="column is-three-quarters">
       <article id="caller-info" class="" style="display:none;">
@@ -201,6 +211,8 @@
       </article>
     </div>
   </div>
+
+  <!-- opens when there is an error . the text inputted here is the error -->
   <div id="modal-error" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -218,6 +230,7 @@
       </footer>
     </div>
   </div>
+  <!-- opens when the button modal-settings-delete in the admin modal footer is clicked -->
   <div id="modal-delete-confirm" class="modal" style="z-index:10;">
     <div class="modal-background"></div>
     <div class="modal-card" style="overflow:visible;">
@@ -240,6 +253,7 @@
       </footer>
     </div>
   </div>
+  <!-- admin modal which pops from the settings menu -->
   <div id="modal-settings" class="modal" style="z-index:0;">
     <div class="modal-background"></div>
     <div class="modal-card" style="width:97%;">

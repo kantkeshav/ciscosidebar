@@ -35,6 +35,8 @@ function addCallLogRow(call_log){
         $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(field2Input),
     );
     $('#call-log-settings').append(row)
+    // #call-log-settings is the table body that exists in the html, the rows and row data is done dynamivally
+
 }
 
 
@@ -65,6 +67,7 @@ function addActionRow(action){
         $('<td class="custom-cell pt-4">').append($(`<label class="checkbox"><input name="action-voicemail" type="checkbox" ${voiceMailChecked}/> Voicemail Enabled</label>`))
     );
     $('#contacts-settings').append(row)
+    // #contacts-settings is the table body that exists in the html, the rows and row data is done dynamivally
 }
 
 
@@ -100,6 +103,8 @@ function fillSettings(data){
             customLog(e);
         }
     }
+    // for each field a input is created(textarea,input) and appended to a created div for the input eg company-input is a input element and will go into a div call company-settings
+    // this all goes into two columns that are defined in the html first-column-settings and second-column-settings
     $('#contacts-settings').empty();
     if(data){
         for(let action of data["actions"]){
@@ -122,10 +127,12 @@ function openSettings(entry){
     currentEntry = entry;
     if(entry){
         $('#modal-settings-delete').show();
+        // modal-settings-delete is a button in the footer of the modal that exists in the html
     } else {
         $('#modal-settings-delete').hide();
     }
     openModal('#modal-settings');
+    // #modal-settings is a modal div whose skeleton is defined in the html header,section,footer
     $('#settings-menu').hide();
 }
 
@@ -152,6 +159,7 @@ async function saveSettings(){
             newEntry.actions.push(action);
         }
     }
+    //will have to add call log saving here???
     if(currentEntry){
         newEntry["_id"] = currentEntry["_id"];
     }
@@ -493,18 +501,21 @@ function initializeDOMListeners(){
         console.log('#action-add add a row');
         addActionRow();
     })
+    // this button action-add is defined at the end of company contact in the modal in html
 
     $('#modal-settings-save').on('click', async function(e){
         console.log('#modal-settings-save save entry');
         $('#modal-settings-save').addClass('is-loading');
         await saveSettings();
     })
+    // this button modal-settings-save is defined in the footer of the modal in the html
 
     $('#modal-settings-delete').on('click', function(e){
         console.log('#modal-settings-delete delete entry');
         $('#modal-delete-confirm-text').text(`Are you sure you want to delete company profile: "${currentEntry.company}"?`);
         openModal("#modal-delete-confirm");
     })
+    // modal-settings-delete is a button in the footer of the modal in html
 
     $('#modal-delete-confirm-delete').on('click', async function(e){
         $("#modal-delete-confirm-error").empty();
@@ -523,6 +534,7 @@ function initializeDOMListeners(){
             closeAllModals();
         }
     })
+    //this is a seperate modal skeleton in the html 
 
     $('.dropdown-item').on('click', function(e){
         applyTheme(e.currentTarget.id);
@@ -555,6 +567,13 @@ function initializeDOMListeners(){
         let parts = e.currentTarget.id.split("-close");
         closeModal(`#${parts[0]}`);
     });
+
+    $('#open-call-log-modal').on('click', function(e){
+    console.log('#open-call-log-modal was clicked');
+    openModal("#modal-subform");
+    //there might have to be a different function like openCallLogModal (similar to openSettings) that fills data first (data that may be needed for dropdowns) then call openModal()
+    // when this modal opens there will be a save button in that modal , this button should call a function called saveCallLogs() which will post to backend
+    })
 }
 
 
