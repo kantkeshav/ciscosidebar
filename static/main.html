@@ -4,6 +4,7 @@
   <script src="https://unpkg.com/@webex/embedded-app-sdk@latest" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <script src="https://kit.fontawesome.com/f4a0e6453b.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
   <style>
     .column.is-centered {
       display: flex;
@@ -126,7 +127,7 @@
       </div>
     </div>
     <button id="open-call-log-modal" class=" mx-5 button is-primary mb-3">
-        Add Call Log
+      Add Call Log
     </button>
     <div class="mx-5 mt-6">
       <h2 class="subtitle is-4 my-1">Company Contacts</h2>
@@ -404,10 +405,22 @@
             </div>
           </div>
 
-          <div class="column is-half">
+          <!-- <div class="column is-half">
             <div class="field">
               <label class="label">Reason for Call</label>
               <textarea id="reasonForCall" class="textarea"></textarea>
+            </div>
+          </div> -->
+
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Reason for Call</label>
+
+              <!-- Quill Editor -->
+              <div id="reasonForCallEditor" style="height: 200px; background: white;"></div>
+
+              <!-- Hidden input to store final HTML -->
+              <input type="hidden" id="reasonForCall">
             </div>
           </div>
 
@@ -435,6 +448,33 @@
       </footer>
     </div>
   </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+  <script>
+    // Initialize Quill
+    var quill = new Quill('#reasonForCallEditor', {
+      theme: 'snow',
+      placeholder: 'Enter the reason for call...',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+          ['clean']
+        ]
+      }
+    });
+
+    // On submit
+    document.getElementById('modal-subform-save').addEventListener('click', function () {
+      // Put Quill HTML into hidden input
+      document.getElementById('reasonForCall').value = quill.root.innerHTML;
+
+      console.log("Saved HTML:", document.getElementById('reasonForCall').value);
+
+      // Now continue your existing submit logic
+    });
+  </script>
 
 </body>
 <script crossorigin src="https://unpkg.com/webex@^3/umd/webex.min.js"></script>
