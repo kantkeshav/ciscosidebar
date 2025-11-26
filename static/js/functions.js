@@ -14,14 +14,39 @@ function closeAllModals() {
 }
 
 function addCallLogRow(call_log){
-    let field1Input = $(`<input name="call-log-field1" class="input" type="text" placeholder="Field 1">`);
-    let field2Input = $(`<input name="call-log-field2" class="input" type="text" placeholder="Field 2">`);
+    let callTypeInput = $(`<input name="call-log-field1" class="input" type="text" placeholder="Call Type">`);
+    let callbackNumberInput = $(`<input name="call-log-field2" class="input" type="text" placeholder="Callback Number">`);
+    let companyContactInput = $(`<input name="call-log-field3" class="input" type="text" placeholder="Company Contact">`);
+    let callerNameInput = $(`<input name="call-log-field4" class="input" type="text" placeholder="Caller Name">`);
+    let reasonForCallInput = $(`<input name="call-log-field5" class="input" type="text" placeholder="Reason For Call">`);
+    let callerCompanyInput = $(`<input name="call-log-field6" class="input" type="text" placeholder="Caller Company">`);
+    let callerEmailInput = $(`<input name="call-log-field7" class="input" type="text" placeholder="Caller Email">`);
+    let timestampInput = $(`<input name="call-log-field8" class="input" type="text" placeholder="Timestamp">`);
+
     if(call_log){
-        if(call_log.field1){
-            field1Input.val(call_log.field1);
+        if(call_log.call_type){
+            callTypeInput.val(call_log.call_type);
         }
-        if(call_log.field2){
-            field2Input.val(call_log.field2);
+        if(call_log.callback_number){
+            callbackNumberInput.val(call_log.callback_number);
+        }
+        if(call_log.company_contact){
+            companyContactInput.val(call_log.company_contact);
+        }
+        if(call_log.caller_name){
+            callerNameInput.val(call_log.caller_name);
+        }
+        if(call_log.reason_for_call){
+            reasonForCallInput.val(call_log.reason_for_call);
+        }
+        if(call_log.caller_company){
+            callerCompanyInput.val(call_log.caller_company);
+        }
+        if(call_log.caller_email){
+            callerEmailInput.val(call_log.caller_email);
+        }
+        if(call_log.timestamp){
+            timestampInput.val(call_log.timestamp);
         }
     }
     let row = $('<tr class="call-log-row">');
@@ -31,8 +56,14 @@ function addCallLogRow(call_log){
         ).on('click', function(e){
             $(e.currentTarget.parentNode.parentNode).remove();
         })),
-        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(field1Input),
-        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(field2Input),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(callTypeInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(callbackNumberInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(companyContactInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(callerNameInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(reasonForCallInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(callerCompanyInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(callerEmailInput),
+        $('<td class="is-hoverable-cell is-striped-cell is-cell-input">').append(timestampInput),
     );
     $('#call-log-settings').append(row)
     // #call-log-settings is the table body that exists in the html, the rows and row data is done dynamivally
